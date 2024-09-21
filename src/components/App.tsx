@@ -3,6 +3,7 @@ import { store } from "../store";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
 import { Card } from "./Card";
+import { NewCardForm } from "./NewCardForm";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <Header />
     Hello Atlas
     <Card />
+    <NewCardForm />
     <Footer />
     </Provider>
   );
