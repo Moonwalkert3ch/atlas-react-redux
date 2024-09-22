@@ -4,6 +4,9 @@ import { useAppSelector, useAppDispatch } from "../store";
 import { deleteCard } from "../slices/cardsSlice";
 import { DeleteListButton } from "./DeleteListButton";
 import { NewCardForm } from "./NewCardForm";
+import { SortableContext, useSortable } from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
+
 
 interface ListProps {
   id: string;
@@ -11,6 +14,33 @@ interface ListProps {
   cards: string[];
   onDelete: () => void;
 }
+
+interface SortableContextProps {
+  cardId: string;
+  title: string;
+  description: string;
+  onDelete: () => void;
+}
+
+const SortableCard: React.FC<SortableContextProps> = ({ cardId, title, description, onDelete })  => {
+  const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id: cardId });
+
+  const style = {
+    transform: CSS. Transform.toString(transform),
+    transition,
+  };
+
+  return (
+    <div ref={setNodeRef} style={style} {...attributes} {...listeners}>
+      <Card
+        title={title}
+        description={description}
+        cardId={cardId}
+        onDelete={onDelete}
+      />
+    </div>
+  );
+};
 
 export const List: React.FC<ListProps> = ({ id, title, cards, onDelete }) => {
   const dispatch = useAppDispatch();
@@ -27,12 +57,15 @@ export const List: React.FC<ListProps> = ({ id, title, cards, onDelete }) => {
       <DeleteListButton listId={id} onDelete={onDelete} />
 
       <h3>{title}</h3>
+      {/* Sortblecontext wraps the cards that need sort */}
+      <SortableContext items={cards}>
+
       {/* Renders each card */}
       {cards.map((cardId) => {
         const card = allCards.find((c) => c.id === cardId); // look for card by id
 
         return (
-          <Card
+          <SortableCard
             key={cardId}
             title={card?.title || "Untitled"}
             description={card?.description || "No description available"}
@@ -41,7 +74,8 @@ export const List: React.FC<ListProps> = ({ id, title, cards, onDelete }) => {
           />
         );
       })}
-      
+      </SortableContext>
+
       <NewCardForm listId={id} />
     </div>
   );
