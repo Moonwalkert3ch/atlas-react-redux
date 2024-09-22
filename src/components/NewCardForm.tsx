@@ -29,7 +29,7 @@ export const NewCardForm: React.FC<NewCardFormProps> = ({ listId }) => {
         <div className="group/new-card m-3 flex h-44 justify-center">
             <form
               onSubmit={handleAddCard}
-              className="hidden min-h-24 w-full flex-col items-start rounded bg-off-white-light px-4 text-blue group-hover/new-card:flex"
+              className="min-h-24 w-full flex-col items-start rounded bg-off-white-light px-4 text-blue group-hover/new-card:flex"
             >
               <input
               ref={titleInputRef}

@@ -10,8 +10,7 @@ function App() {
   return (
 
     <Provider store={store}>
-      <Header />
-    Hello Atlas
+    <Header />
     <Board />
     <Footer />
     </Provider>

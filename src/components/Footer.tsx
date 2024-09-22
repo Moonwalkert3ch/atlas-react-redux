@@ -1,42 +1,49 @@
 import React, { useState } from "react";
+import { useAppDispatch } from "../store";
+import { addList, clearBoard } from "../slices/listsSlice";
 
 export const Footer: React.FC = () => {
     const [listTitle, setListTitle] = useState("");
+    const dispatch = useAppDispatch();
 
-    // handles form submission
+    // Handles form submission
     const handleFormSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        alert(`Create list: ${listTitle}`);
+        if (listTitle.trim() !== "") {
+            dispatch(addList({ title: listTitle }));
+            setListTitle(""); // Clear input after adding the list
+        }
     };
 
-    // clears the board
+    // Clears the board
     const handleClearBoard = () => {
-        alert(`Clear board`);
+        dispatch(clearBoard());
+        setListTitle(""); // Optionally clear input when clearing the board
     };
 
     return (
         <footer className="sticky bottom-0 left-0 flex w-screen items-center justify-center space-x-8 border-t-2 border-blue bg-off-white-light p-8">
-            <form onSubmit={handleFormSubmit}>
+            <form onSubmit={handleFormSubmit} className="flex space-x-4">
                 <input 
-                type="text"
-                placeholder="List title"
-                name="title"
-                value={listTitle} // binds input value to the state
-                onChange={(e) => setListTitle(e.target.value)} //updates the state on input change
-                className="border-0 bg-transparent text-3xl font-semibold text-blue placeholder:text-blue placeholder:opacity-50 focus:outline-none"
+                    type="text"
+                    placeholder="List title"
+                    name="title"
+                    value={listTitle} // Binds input value to the state
+                    onChange={(e) => setListTitle(e.target.value)} // Updates the state on input change
+                    className="border-0 bg-transparent text-3xl font-semibold text-blue placeholder:text-blue placeholder:opacity-50 focus:outline-none"
                 />
                 <button
-                type="submit"
-                className="rounded bg-teal px-6 py-4 text-xl font-semibold text-off-white-light"
+                    type="submit"
+                    className="rounded bg-teal px-6 py-4 text-xl font-semibold text-off-white-light"
                 >
-                Save
+                    Save
                 </button>
                 <button
-                onClick={handleClearBoard}
-                type="button"
-                className="rounded bg-teal px-6 py-4 text-xl font-semibold text-off-white-light"
+                    onClick={handleClearBoard}
+                    type="button"
+                    className="rounded bg-teal px-6 py-4 text-xl font-semibold text-off-white-light"
                 >
-                Clear Board
+                    Clear Board
                 </button>
             </form>
         </footer>
