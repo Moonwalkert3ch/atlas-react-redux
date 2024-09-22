@@ -1,12 +1,4 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { stringify } from "uuid";
-
-// define logic of moving a card between lists
-interface Card {
-  id: string;
-  title: string;
-  description: string;
-}
 
 // Define the structure of a card and a list
 interface List {
