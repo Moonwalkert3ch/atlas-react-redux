@@ -21,7 +21,7 @@ export const cardsSlice = createSlice({
     reducers: {
         createCard: (
             state,
-            action: PayloadAction<{ title: string; description: string }>
+            action: PayloadAction<{ listId: string; title: string; description: string }>
         ) => {
             const newCard: Card = {
                 id: uuidv4(),

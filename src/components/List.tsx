@@ -38,6 +38,7 @@ export const List: React.FC<ListProps> = ({ id, title, cards }) => {
           />
         );
       })}
+      
       <NewCardForm listId={id} />
     </div>
   );
