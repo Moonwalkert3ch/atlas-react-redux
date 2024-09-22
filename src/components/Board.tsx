@@ -8,7 +8,7 @@ export function Board() {
     const dispatch = useDispatch();
 
     return (
-        <div className="m-auto h-screen w-screen overflow-x-scroll text-center">
+      <div className="m-auto h-screen w-screen overflow-x-scroll text-center">
       <div className="flex h-full space-x-4">
         {lists.map((list) => (
           <List 

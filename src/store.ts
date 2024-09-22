@@ -5,7 +5,7 @@ import cardsReducer from './slices/cardsSlice';
 
 export const store = configureStore({
     reducer: {
-        lists: listsReducer,
+        toDoList: listsReducer,
         cards: cardsReducer,
     },
 });

@@ -9,9 +9,10 @@ interface ListProps {
   id: string;
   title: string;
   cards: string[];
+  onDelete: () => void;
 }
 
-export const List: React.FC<ListProps> = ({ id, title, cards }) => {
+export const List: React.FC<ListProps> = ({ id, title, cards, onDelete }) => {
   const dispatch = useAppDispatch();
 
   // retrieves card data from the redux store
@@ -23,7 +24,7 @@ export const List: React.FC<ListProps> = ({ id, title, cards }) => {
 
   return (
     <div className="group/list h-full min-w-96 p-4">
-      <DeleteListButton listId={id} />
+      <DeleteListButton listId={id} onDelete={onDelete} />
 
       <h3>{title}</h3>
       {/* Renders each card */}

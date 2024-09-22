@@ -4,15 +4,17 @@ import { deleteList } from "../slices/listsSlice";
 
 interface DeleteListButtonProps {
   listId: string;
+  onDelete: () => void;
 }
 
 
-export const DeleteListButton: React.FC<DeleteListButtonProps> = ({ listId }) => {
+export const DeleteListButton: React.FC<DeleteListButtonProps> = ({ listId, onDelete }) => {
   const dispatch = useAppDispatch();
 
   // handle delete list button
   const handleDeleteButton = () => {
     dispatch(deleteList({ listId }));
+    onDelete();
     };
 
   return (
