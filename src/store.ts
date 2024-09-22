@@ -2,7 +2,9 @@ import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch, useSelector } from "react-redux";
 
 export const store = configureStore({
-    reducer: {},
+    reducer: {
+        toDoList: toDoListReducer,
+    },
 });
 
 // thesee types are helpfull for typescript autocomplete
