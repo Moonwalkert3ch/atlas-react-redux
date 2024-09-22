@@ -35,6 +35,8 @@ export const List: React.FC<ListProps> = ({ id, title, cards }) => {
             key={cardId}
             title={card?.title || "Untitled"}
             description={card?.description || "No description available"}
+            cardId={cardId}
+            onDelete={() => handleDeleteCard(cardId)}
           />
         );
       })}

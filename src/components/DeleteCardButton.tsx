@@ -1,13 +1,22 @@
 import React from "react";
+import { useAppDispatch } from "../store";
+import { deleteCard } from "../slices/cardsSlice";
 
-export const DeleteCardButton: React.FC = () => {
+interface DeleteCardButtonProps {
+  cardId: string;
+  onDelete: () => void;
+}
 
-    const handleDelete = () => {
-        alert("Delete card")
-      };
+export const DeleteCardButton: React.FC<DeleteCardButtonProps> = ({ cardId, onDelete }) => {
+  const dispatch = useAppDispatch();
 
-    return (
-        <button className="hidden group-hover/card:block" onClick={handleDelete}>
+  const handleDeleteButton = () => {
+    dispatch(deleteCard(cardId)); // dispatch delete action
+    onDelete(); // calls onDelete function thats passed from the card component
+  };
+
+  return (
+        <button className="hidden group-hover/card:block" onClick={handleDeleteButton}>
               <svg
                 className="h-[20px] w-[20px]"
                 xmlns="http://www.w3.org/2000/svg"
