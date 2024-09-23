@@ -1,6 +1,7 @@
 import { test, expect } from "vitest";
 
-import listsReducer, { addList } from "../slices/listsSlice";
+import listsReducer, { addCardToList, addList, clearBoard, deleteList } from "../slices/listsSlice";
+import { a } from "vitest/dist/chunks/suite.CcK46U-P.js";
 
 // define the initial state for the tests
 const initialState = {
@@ -27,4 +28,37 @@ test("adding a new list renders correctly", () => {
     expect(state.lists[4].cards).toHaveLength(0);
 });
 
-// test
+// test for deleting
+test("delets list renders correctly", () => {
+    const action = deleteList({ listId: "1" });
+
+    // apply action get new state
+    const state = listsReducer(initialState, action);
+
+    // checks length verifies is less
+    expect(state.lists).toHaveLength(3);
+    expect(state.lists.find(list => list.id === "1")).toBeUndefined();
+});
+
+// test to add card
+test("adds card to list renders correctly", () => {
+    const action = addCardToList({ listId: "1", cardId: "card9"});
+
+    // apply action update the state
+    const state = listsReducer(initialState, action);
+
+    // checks if card added to right list
+    expect(state.lists[0].cards).toHaveLength(3);
+    expect(state.lists[0].cards).toContain("card9");
+});
+
+// test the resetting of the board
+test("clear the board renders correctly", () => {
+    const action = clearBoard();
+
+    // apply action update the state
+    const state = listsReducer(initialState, action);
+
+    // check if lists array is clear
+    expect(state.lists). toHaveLength(0);
+});
