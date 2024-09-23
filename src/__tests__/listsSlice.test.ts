@@ -14,15 +14,17 @@ const initialState = {
 
 // Test for adding a new list
 test("adding a new list renders correctly", () => {
-    const newListTitle = "Done";
+    const newListTitle = "To-Do";
     const action = addList({ title: newListTitle });
 
     // apply the action and retrieve new state
     const state = listsReducer(initialState, action);
 
     // checks if list increased meaning the new list was added
-    expect(state.lists).toHaveLength(3);
+    expect(state.lists).toHaveLength(5);
     expect(state.lists[2]).toHaveProperty("title", newListTitle);
     // expect new lists cards array to be empty
-    expect(state.lists[2].cards).toHaveLength(0);
-})
+    expect(state.lists[4].cards).toHaveLength(0);
+});
+
+// test
