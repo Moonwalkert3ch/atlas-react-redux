@@ -23,8 +23,10 @@ interface SortableContextProps {
 }
 
 const SortableCard: React.FC<SortableContextProps> = ({ cardId, title, description, onDelete })  => {
+  // useSortable makes card draggable
   const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id: cardId });
 
+  // styles dor drag transformation and transition
   const style = {
     transform: CSS. Transform.toString(transform),
     transition,
@@ -67,8 +69,8 @@ export const List: React.FC<ListProps> = ({ id, title, cards, onDelete }) => {
         return (
           <SortableCard
             key={cardId}
-            title={card?.title || "Untitled"}
-            description={card?.description || "No description available"}
+            title={card?.title || "Lorem ipsum dolor"}
+            description={card?.description || "Sed viverra, dom ed facilisis bibendum, ante placeat wquam"}
             cardId={cardId}
             onDelete={() => handleDeleteCard(cardId)}
           />
