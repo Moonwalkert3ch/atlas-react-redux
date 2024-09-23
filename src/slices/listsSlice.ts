@@ -15,7 +15,9 @@ interface ListsState {
 const initialState: ListsState = {
   lists: [
     { id: "1", title: "To-Do", cards: ["card1", "card2"]},
-    { id: "2", title: "To-Do", cards: ["card3", "card4"]}
+    { id: "2", title: "To-Do", cards: ["card3", "card4"]},
+    { id: "3", title: "To-Do", cards: ["card5", "card6"]},
+    { id: "4", title: "To-Do", cards: ["card7", "card8"]}
   ],
 };
 
